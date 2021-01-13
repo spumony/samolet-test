@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { Layout } from 'antd';
-import './app.css';
-import { getData } from "./api";
+import React, { useEffect, useState } from "react";
+import { Layout } from "antd";
+import "./app.css";
+import Libraries from "container/libraries";
+import { Switch, Route } from "react-router-dom";
+import LibraryDetailed from "components/library-detailed";
 
-export default function App() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    getData().then(setData);
-  }, []);
-
+const App = () => {
   return (
     <Layout>
-      <pre>
-        { JSON.stringify(data, null, 2) }
-      </pre>
+      <Switch>
+        <Route exact path="/" component={Libraries} />
+        <Route path="/library/:id">
+          <LibraryDetailed />
+        </Route>
+        <Route path="/library/:id" component={LibraryDetailed} />
+      </Switch>
+
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
     </Layout>
   );
-}
+};
+
+export default App;
