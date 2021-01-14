@@ -5,8 +5,8 @@ module.exports = function (app) {
     proxy("/opendata/", {
       target: "https://data.gov.ru/sites/default/files",
       changeOrigin: true,
-      secure: false,
-      "^/api/remove/path": "/path",
+      secure: true,
+      "^/library/opendata": "/opendata",
     })
   );
 };

@@ -6,14 +6,11 @@ import { Link } from "react-router-dom";
 const { Search } = Input;
 
 const LibraryList = ({ data }) => {
-  const [searchItems, setSearchItems] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
 
   useEffect(() => {
     setFilteredData(data);
   }, [data]);
-
-  // const onSearch = (value) => console.log(value);
 
   const onSearch = useCallback(
     (searchValue) => {
