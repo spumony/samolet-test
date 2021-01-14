@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { List, Menu, Dropdown, Row, Col, Input } from "antd";
+import { Button, Menu, Dropdown, Row, Col, Input, BackTop } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
@@ -63,13 +63,11 @@ const LibraryList = ({ data }) => {
 
   return (
     <>
-      <br />
-
-      <Row justify="space-between" className="pt-5">
-        <Col span={8} style={{ paddingLeft: "5px" }}>
+      <Row justify="space-between padding" className="pt-5">
+        <Col span={6} offset={2}>
           <Search placeholder="Поиск" onSearch={onSearch} enterButton />
         </Col>
-        <Col span={4}>
+        <Col span={4} offset={2}>
           <Dropdown overlay={menu}>
             <a className="ant-dropdown-link">
               Сортировать <DownOutlined />
@@ -78,24 +76,39 @@ const LibraryList = ({ data }) => {
         </Col>
       </Row>
 
-      <br />
+      <Row className="padding">
+        <Col span={20} offset={2}>
+          <table>
+            <thead>
+              <tr>
+                <td>id</td>
+                <td>Address</td>
+                <td>Libraries</td>
+                <td>Action</td>
+              </tr>
+            </thead>
 
-      <Row>
-        <Col span={24}>
-          <List
-            header={<div>Library #kopuk</div>}
-            bordered
-            dataSource={filteredData}
-            renderItem={({ id, address, libraries }) => (
-              <List.Item>
-                <Link to={`/library/${id}`}>
-                  id: {id} Address: {address} amount: {libraries}
-                </Link>
-              </List.Item>
-            )}
-          />
+            {filteredData.map(({ id, address, libraries }, idx) => {
+              return (
+                <tbody key={idx}>
+                  <tr>
+                    <td>{id}</td>
+                    <td>{address}</td>
+                    <td>{libraries}</td>
+                    <td>
+                      <Link to={`/library/${id}`}>
+                        <Button type="primary">Open</Button>
+                      </Link>
+                    </td>
+                  </tr>
+                </tbody>
+              );
+            })}
+          </table>
         </Col>
       </Row>
+
+      <BackTop />
     </>
   );
 };

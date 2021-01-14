@@ -3,6 +3,7 @@ import { GET_LIBRARIES_DATA, LIBRARIES_ERROR } from "../actions/types";
 const initialState = {
   items: [],
   error: {},
+  loading: true,
 };
 
 const transformItems = (items) =>
@@ -14,6 +15,7 @@ const transformItems = (items) =>
 
 const getLibrariesData = (state, libraries) => ({
   ...state,
+  loading: false,
   items: transformItems(libraries),
 });
 
