@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { Layout } from "antd";
-import "./app.css";
-import Libraries from "container/libraries";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
-import LibraryDetailed from "components/library-detailed";
+import { useDispatch } from "react-redux";
+import { Layout } from "antd";
+
+import Libraries from "common/container/libraries";
+import { getLibrariesData } from "common/redux/actions/libraries";
+import Library from "pages/library";
+import "./app.css";
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getLibrariesData());
+  }, []);
+
   return (
     <Layout>
       <Switch>
         <Route exact path="/" component={Libraries} />
-        <Route path="/library/:id">
-          <LibraryDetailed />
-        </Route>
-        <Route path="/library/:id" component={LibraryDetailed} />
+        <Route path="/library/:id" component={Library} />
       </Switch>
-
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
     </Layout>
   );
 };

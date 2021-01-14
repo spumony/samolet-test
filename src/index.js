@@ -7,11 +7,16 @@ import App from "./app";
 import * as serviceWorker from "./serviceWorker";
 import "antd/dist/antd.css";
 
+import { Provider } from "react-redux";
+import store from "./common/redux/store";
+
 ReactDOM.render(
   <ConfigProvider locale={ruRU}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </ConfigProvider>,
   document.getElementById("root")
 );
