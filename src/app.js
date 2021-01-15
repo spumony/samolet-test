@@ -16,6 +16,10 @@ const App = () => {
     dispatch(getLibrariesData());
   }, []);
 
+  console.log(
+    "Хотел задеплоить на github pages, но не успел настроить proxy и cors."
+  );
+
   return (
     <Layout style={{ height: "100%" }}>
       <Header>
