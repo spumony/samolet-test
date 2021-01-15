@@ -1,4 +1,4 @@
-import { GET_LIBRARIES_DATA, LIBRARIES_ERROR } from "../actions/types";
+import { GET_LIBRARIES_DATA } from "../actions/types";
 
 const initialState = {
   items: [],
@@ -19,19 +19,13 @@ const getLibrariesData = (state, libraries) => ({
   items: transformItems(libraries),
 });
 
-const librariesError = (state, error) => ({
-  ...state,
-  error,
-});
-
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
     case GET_LIBRARIES_DATA:
       return getLibrariesData(state, payload);
-    case LIBRARIES_ERROR:
-      return librariesError(state, payload);
+
     default:
       return state;
   }

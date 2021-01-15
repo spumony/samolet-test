@@ -21,6 +21,7 @@ const App = () => {
       <Header>
         <Typography.Text mark>[Libraries of Russia]</Typography.Text>
       </Header>
+
       <Switch>
         <Route exact path="/" component={Libraries} />
         <Route path="/library/:id" component={Library} />
